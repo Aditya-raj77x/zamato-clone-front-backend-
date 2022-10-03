@@ -11,7 +11,17 @@ const Router = express.Router();
  * Access    Public
  * Method    POST
  */
-// Homework
+Router.post("/create", async (req, res) => {
+    try {
+        const { data } = req.body;
+        const newRestaurant = await RestaurantModel.create({ ...data });
+        res.status(200).json({ newRestaurant })
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+
+    }
+
+})
 
 /**
  * Route     /
@@ -26,13 +36,14 @@ Router.get("/", async (req, res) => {
         const { city } = req.query;
         const restaurants = await RestaurantModel.find({ city });
         if (restaurants.length === 0) {
-            return res.json({ error: "No restaurant found in this city." });
+            return res.status(404).json({ error: "No restaurant found in this city." });
         }
         return res.json({ restaurants });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
 });
+
 
 /**
  * Route     /:_id

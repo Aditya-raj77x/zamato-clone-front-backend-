@@ -23,8 +23,11 @@ const Router = express.Router();
 Router.get("/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
-        const foods = FoodModel.findById(_id);
-        return res.json({ foods });
+
+        //   await validateId(req.params);
+
+        const food = await FoodModel.findById(_id);
+        return res.json({ food });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -43,6 +46,10 @@ Router.get("/r/:_id", async (req, res) => {
         const foods = await FoodModel.find({
             restaurant: _id,
         });
+        if (!foods) {
+            return res.status(404)
+                .json({ message: "no food found for this particular restaurant" });
+        }
         return res.json({ foods });
     } catch (error) {
         return res.status(500).json({ error: error.message });
