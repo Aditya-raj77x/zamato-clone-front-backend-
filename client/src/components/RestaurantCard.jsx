@@ -1,3 +1,5 @@
+
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
@@ -7,7 +9,7 @@ const RestaurantCard = (props) => {
         images: [
             {
                 location:
-                    "https://b.zmtcdn.com/data/pictures/chains/4/19280574/c9fbbf2eed4d4ab83ce63b114e76b57f.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
+                    "https://b.zmtcdn.com/data/pictures/chains/4/584/bdab27a41125cd45ddf814c7fad470b2_o2_featured_v2.jpg",
             },
         ],
     });
@@ -23,12 +25,12 @@ const RestaurantCard = (props) => {
                         <div className="flex flex-col gap-2 items-start absolute">
                             {props.isPro && (
                                 <span className="bg-zomato-400 text-white px-2 py-1 rounded text-sm">
-                                    Pro extra 17% off
+                                    Pro extra 10% off
                                 </span>
                             )}
                             {props.isOff && (
                                 <span className="bg-blue-600 text-white px-2 py-1 rounded text-sm">
-                                    $150 OFF
+                                    $250 OFF
                                 </span>
                             )}
                         </div>
@@ -58,4 +60,4 @@ const RestaurantCard = (props) => {
     );
 };
 
-export default RestaurantCard;
+export default RestaurantCard
