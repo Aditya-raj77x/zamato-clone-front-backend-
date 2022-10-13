@@ -92,14 +92,14 @@ const BrandCarousel = () => {
                 Top brands for you
             </h1>
             <div className="lg:hidden grid grid-cols-3 md:grid-cols-4 gap-3 justify-center">
-                {categories.map((food) => (
-                    <DeliveryCategoryCard {...food} />
+                {categories.map((food, index) => (
+                    <DeliveryCategoryCard {...food} key={index} />
                 ))}
             </div>
             <div className="hidden lg:block">
                 <Swiper {...slideConfig}>
-                    {categories.map((food) => (
-                        <SwiperSlide>
+                    {categories.map((food, index) => (
+                        <SwiperSlide key={index}>
                             <DeliveryCategoryCard {...food} />
                         </SwiperSlide>
                     ))}

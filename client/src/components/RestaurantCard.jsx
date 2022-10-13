@@ -9,7 +9,7 @@ const RestaurantCard = (props) => {
         images: [
             {
                 location:
-                    "https://b.zmtcdn.com/data/pictures/chains/4/584/bdab27a41125cd45ddf814c7fad470b2_o2_featured_v2.jpg",
+                    "https://b.zmtcdn.com/data/pictures/chains/4/19280574/c9fbbf2eed4d4ab83ce63b114e76b57f.jpg",
             },
         ],
     });
