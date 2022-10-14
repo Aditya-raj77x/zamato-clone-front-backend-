@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { GoSettings } from "react-icons/go"
+import { BsArrowDownUp } from "react-icons/bs"
+import { IoIosArrowDown } from "react-icons/io"
 
 // components
 import DeliveryCarousel from "./DeliveryCarousel";
@@ -54,8 +57,17 @@ const Delivery = () => {
 
     return (
         <>
+            <div className="flex gap-3 flex-wrap">
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  "><GoSettings className="pr-1" /> Fillters</button>
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  "><BsArrowDownUp className="pr-1" /> Delivery Time</button>
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  ">Rating 4.0 +</button>
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  ">Pure Veg</button>
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  ">cuisine <IoIosArrowDown className="pl-1" /></button>
+                <button className="text-md border p-2 hover:bg-gray-100 flex gap-1 border-2 bg-white rounded-lg text-slate-400  ">More Fillters <IoIosArrowDown className="pl-1" /></button>
+            </div>
             <DeliveryCarousel />
             <BrandCarousel />
+
             <h1 className="text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold">
                 Delivery Restaurants in Hamirpur(UP)
             </h1>
