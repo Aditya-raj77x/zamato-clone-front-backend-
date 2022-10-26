@@ -32,12 +32,28 @@ const Overview = () => {
         averageCost: "450",
     });
     const [menuImages, setMenuImages] = useState([
+        "https://b.zmtcdn.com/data/menus/377/19498377/4ab520aa6d3cb624dd7814626d3a3514.jpg",
+        "https://b.zmtcdn.com/data/menus/377/19498377/a817aefd6e25ac3286b5427fb2fe241a.jpg",
+        "https://b.zmtcdn.com/data/menus/377/19498377/4557e19a745dba780e284a727a9bb7f9.jpg",
         "https://b.zmtcdn.com/data/menus/931/931/d40e86a957d1ed6e6fabe5a67a161904.jpg",
         "https://b.zmtcdn.com/data/menus/931/931/36f8a3b9e5dbf6435f903c9a8745bcc8.jpg",
         "https://b.zmtcdn.com/data/menus/931/931/8d6623791860b054953b6c2c14d61bcb.jpg",
         "https://b.zmtcdn.com/data/menus/931/931/6d462a04051c0eabb0067149aa84cc64.jpg",
     ]);
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState([
+        {
+            rating: 3.7,
+            isRestaurantReview: false,
+            createdAt: "Sun Aug 4 2022 20:20:34 GMT+0530 (India Standard Time)",
+            reviewText: "excelent exprience.",
+        },
+        {
+            rating: 4.5,
+            isRestaurantReview: false,
+            createdAt: "Fri Oct 14 2022 20:19:34 GMT+0530 (India Standard Time)",
+            reviewText: "Very good experience.",
+        },
+    ]);
     const { id } = useParams;
 
     const slideConfig = {
@@ -121,7 +137,7 @@ const Overview = () => {
                             count={5}
                             onChange={(newRating) => console.log(newRating)}
                             size={24}
-                            activeColor="#ffd700"
+                            activeColor="#ea2c2c"
                         />
                         {reviews.map((review, index) => (
                             <ReviewCard {...review} key={index} />
@@ -134,20 +150,38 @@ const Overview = () => {
                             <Swiper {...slideConfig}>
                                 <SwiperSlide>
                                     <MenuSimilarRestaurantCard
-                                        image="https://b.zmtcdn.com/data/pictures/chains/3/307893/f606e2cc225f298f77b0bf9673e96dbe_featured_v2.jpg"
-                                        title="Bikkgane Biryani"
+                                        image="https://b.zmtcdn.com/data/dish_photos/9ab/55e41128cc6a3fe5448662a52bbdb9ab.jpg"
+                                        title="Paneer Butter Masala"
                                     />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <MenuSimilarRestaurantCard
-                                        image="https://b.zmtcdn.com/data/pictures/chains/2/18363082/029c99fa45772a9c162983d13861d864_featured_v2.jpg"
-                                        title="Behrouz Biryani"
+                                        image="https://b.zmtcdn.com/data/dish_photos/678/6470f481aafdec89d2e634d5c4a4c678.jpg"
+                                        title="Molecule Veg Biryani"
                                     />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <MenuSimilarRestaurantCard
                                         image="https://b.zmtcdn.com/data/pictures/chains/4/844/c2aff8d94b55d820df98053ce1b8d9cb_featured_v2.jpg"
                                         title="Khan Chacha"
+                                    />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <MenuSimilarRestaurantCard
+                                        image="https://b.zmtcdn.com/data/dish_photos/242/9e7b82dac6c0ce8fb3fa67a09a669242.jpg"
+                                        title="Veg Steamed Momos [5 Pieces]"
+                                    />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <MenuSimilarRestaurantCard
+                                        image="https://b.zmtcdn.com/data/dish_photos/ad9/dcd3d4b092460e607ad550823fafaad9.jpg"
+                                        title="Veg Afghani Momos [5 Pieces]"
+                                    />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <MenuSimilarRestaurantCard
+                                        image="https://b.zmtcdn.com/data/dish_photos/cf2/e6001efc2d49f83017f3761243d04cf2.jpg"
+                                        title="Chilli Cheese Garlic Bread"
                                     />
                                 </SwiperSlide>
                             </Swiper>
@@ -157,22 +191,23 @@ const Overview = () => {
                     <div className="my-4 w-full md:hidden flex flex-col gap-4">
                         <MapView
                             title="McDonald's"
-                            phno="+193423542345"
+                            phno="+9180901056"
                             mapLocation={getLatLong("28.64121406271755, 77.21955482132051")}
-                            address="H-5/6, Plaza Building, Connaught Place, New Delhi"
+                            address="H-5/6, Plaza Building, Connaught Place, Hamirpur UP"
                         />
                     </div>
                 </div>
             </div>
             <aside
                 style={{ height: "fit-content" }}
-                className="hidden md:flex md:w-4/12 sticky rounded-xl top-20 bg-white p-3 shadow-md flex-col gap-4"
+                className="hidden md:flex md:w-4/12 sticky rounded-xl top-20 bg-white py-4 px-3 shadow-md flex-col gap-4"
             >
                 <MapView
                     title="McDonald's"
                     phno="+193423542345"
                     mapLocation={getLatLong("28.64121406271755, 77.21955482132051")}
-                    address="H-5/6, Plaza Building, Connaught Place, New Delhi"
+                    latAndLong={"28.64121406271755, 77.21955482132051"}
+                    address="H-5/6, Plaza Building, Connaught Place, Hamirpur"
                 />
             </aside>
         </div>

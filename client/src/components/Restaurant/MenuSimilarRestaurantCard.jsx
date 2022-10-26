@@ -17,7 +17,7 @@ const MenuSimilarRestaurantCard = (props) => {
                     <div className="flex items-center justify-start text-sm gap-4">
                         <span className="flex items-center justify-between text-sm gap-2">
                             <span className="flex text-sm items-center gap-1 bg-green-700 text-white px-2 py-1 rounded">
-                                3.9 <TiStar />
+                                3.7 <TiStar />
                             </span>
                             Dining
                         </span>
@@ -28,7 +28,7 @@ const MenuSimilarRestaurantCard = (props) => {
                             Delivery
                         </span>
                     </div>
-                    <h4>Street Food, Benerages, Tea</h4>
+                    <h4>Street Food, Pizza, Coffee</h4>
                 </div>
             </div>
         </div>
