@@ -29,7 +29,7 @@ const AddReviewCard = () => {
                         type={"radio"}
                         name="review"
                         id="dining"
-                        onChange={(each) => getReviewType(each.target.name)}
+                        onChange={(each) => getReviewType(each.target.id)}
                     />
                     <label htmlFor="dining">Dining</label>
                 </div>
@@ -38,12 +38,12 @@ const AddReviewCard = () => {
                         type={"radio"}
                         name="review"
                         id="delivery"
-                        onChange={(each) => getReviewType(each.target.name)}
+                        onChange={(each) => getReviewType(each.target.id)}
                     />
                     <label htmlFor="delivery">Delivery</label>
                 </div>
             </div>
-            <button onClick={openModal} className="text-zomato-400 hover:text-zamato-100 text-left">
+            <button onClick={openModal} className="text-zomato-400 text-left">
                 Write a review
             </button>
         </>
