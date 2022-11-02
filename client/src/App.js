@@ -1,11 +1,16 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // pages
 import Checkout from "./pages/Checkout.page";
 import GoogleAuth from "./pages/GoogleAuth.page";
 import Home from "./pages/Home.page";
 import Restaurant from "./pages/Restaurant.page";
+
+// redux
+import { useDispatch } from "react-redux";
+import { getMySelf } from "./redux/reducers/user/user.action";
 
 // components
 import Overview from "./components/Restaurant/Overview";
@@ -16,6 +21,11 @@ import Photos from "./components/Restaurant/Photos";
 import RestaurantLayout from "./layouts/Restaurant.layout";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMySelf());
+  }, [localStorage]);
   return (
     <>
       <Routes>
