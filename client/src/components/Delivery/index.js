@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoSettings } from "react-icons/go"
 import { BsArrowDownUp } from "react-icons/bs"
 import { IoIosArrowDown } from "react-icons/io"
+import { useSelector } from "react-redux";
 
 // components
 import DeliveryCarousel from "./DeliveryCarousel";
@@ -9,51 +10,15 @@ import BrandCarousel from "./BrandCarousel";
 import RestaurantCard from "../RestaurantCard";
 
 const Delivery = () => {
-    const [restaurantList, setRestaurantList] = useState([
-        {
-            _id: "124ksjf435245jv34fg3",
-            isPro: true,
-            isOff: true,
-            name: "Burger King",
-            restaurantReviewValue: "3.7",
-            cuisine: [
-                "Burger King",
-                "Burger, American",
-                "Chinese",
-                "Street Food",
-                "Fast Food",
-                "Desserts",
-                "North Indian",
-            ],
-            averageCost: "450",
-        },
-        {
-            _id: "sdffdsadadsfadfadsfadsf",
-            isPro: true,
-            isOff: false,
-            name: "Vada Grill",
-            restaurantReviewValue: "4.6",
-            cuisine: ["Asian", "Chinese", "Thai", "Malaysian", "Korean"],
-            averageCost: "600",
-        },
-        {
-            _id: "124ksjf435245jfdfv34fg3",
-            isPro: true,
-            isOff: true,
-            name: "Domino's Pizza",
-            restaurantReviewValue: "3.7",
-            cuisine: [
-                "Burger King",
-                "Burger, American",
-                "Chinese",
-                "Street Food",
-                "Fast Food",
-                "Desserts",
-                "North Indian",
-            ],
-            averageCost: "450",
-        },
-    ]);
+    const [restaurantList, setRestaurantList] = useState([]);
+
+    const reduxState = useSelector(
+        (globalState) => globalState.restaurant.restaurants
+    );
+
+    useEffect(() => {
+        reduxState && setRestaurantList(reduxState);
+    }, [reduxState]);
 
     return (
         <>
@@ -81,3 +46,48 @@ const Delivery = () => {
 };
 
 export default Delivery;
+// const [restaurantList, setRestaurantList] = useState([
+//     {
+//         _id: "124ksjf435245jv34fg3",
+//         isPro: true,
+//         isOff: true,
+//         name: "Burger King",
+//         restaurantReviewValue: "3.7",
+//         cuisine: [
+//             "Burger King",
+//             "Burger, American",
+//             "Chinese",
+//             "Street Food",
+//             "Fast Food",
+//             "Desserts",
+//             "North Indian",
+//         ],
+//         averageCost: "450",
+//     },
+//     {
+//         _id: "sdffdsadadsfadfadsfadsf",
+//         isPro: true,
+//         isOff: false,
+//         name: "Vada Grill",
+//         restaurantReviewValue: "4.6",
+//         cuisine: ["Asian", "Chinese", "Thai", "Malaysian", "Korean"],
+//         averageCost: "600",
+//     },
+//     {
+//         _id: "124ksjf435245jfdfv34fg3",
+//         isPro: true,
+//         isOff: true,
+//         name: "Domino's Pizza",
+//         restaurantReviewValue: "3.7",
+//         cuisine: [
+//             "Burger King",
+//             "Burger, American",
+//             "Chinese",
+//             "Street Food",
+//             "Fast Food",
+//             "Desserts",
+//             "North Indian",
+//         ],
+//         averageCost: "450",
+//     },
+// ]);
