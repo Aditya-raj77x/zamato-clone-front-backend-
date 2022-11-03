@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 // components
@@ -17,9 +17,19 @@ import MenuSimilarRestaurantCard from "./MenuSimilarRestaurantCard";
 import ReviewCard from "../Reviews/ReviewCard";
 import MapView from "./MapView";
 
+// redux
+
+
+import { getReview } from "../../redux/reducers/review/review.action";
+import { getImage } from "../../redux/reducers/image/image.action";
+
 const Overview = () => {
+    const dispatch = useDispatch();
 
     const [restaurant, setRestaurant] = useState({ cuisine: [] });
+    const [reviews, setReviews] = useState([]);
+    const [menuImages, setMenuImages] = useState([]);
+
     const reduxState = useSelector(
         (globalState) => globalState.restaurant.selectedRestaurant.restaurant
     );
@@ -30,29 +40,22 @@ const Overview = () => {
         }
     }, [reduxState]);
 
-    const [menuImages, setMenuImages] = useState([
-        "https://b.zmtcdn.com/data/menus/377/19498377/4ab520aa6d3cb624dd7814626d3a3514.jpg",
-        "https://b.zmtcdn.com/data/menus/377/19498377/a817aefd6e25ac3286b5427fb2fe241a.jpg",
-        "https://b.zmtcdn.com/data/menus/377/19498377/4557e19a745dba780e284a727a9bb7f9.jpg",
-        "https://b.zmtcdn.com/data/menus/931/931/d40e86a957d1ed6e6fabe5a67a161904.jpg",
-        "https://b.zmtcdn.com/data/menus/931/931/36f8a3b9e5dbf6435f903c9a8745bcc8.jpg",
-        "https://b.zmtcdn.com/data/menus/931/931/8d6623791860b054953b6c2c14d61bcb.jpg",
-        "https://b.zmtcdn.com/data/menus/931/931/6d462a04051c0eabb0067149aa84cc64.jpg",
-    ]);
-    const [reviews, setReviews] = useState([
-        {
-            rating: 3.7,
-            isRestaurantReview: false,
-            createdAt: "Sun Aug 4 2022 20:20:34 GMT+0530 (India Standard Time)",
-            reviewText: "excelent exprience.",
-        },
-        {
-            rating: 4.5,
-            isRestaurantReview: false,
-            createdAt: "Fri Oct 14 2022 20:19:34 GMT+0530 (India Standard Time)",
-            reviewText: "Very good experience.",
-        },
-    ]);
+    useEffect(() => {
+        if (reduxState) {
+            dispatch(getImage(reduxState?.menuImages)).then((data) => {
+                const images = [];
+                data.payload.images.map(({ location }) => images.push(location));
+                setMenuImages(images);
+            });
+
+            dispatch(getReview(reduxState?._id)).then((data) => {
+                setReviews(data.payload.reviews);
+            });
+        }
+    }, [reduxState]);
+
+
+
     const { id } = useParams;
 
     const slideConfig = {
@@ -232,3 +235,30 @@ export default Overview;
 //     ],
 //     averageCost: "450",
 // });
+
+
+// const [reviews, setReviews] = useState([
+//     {
+//         rating: 3.7,
+//         isRestaurantReview: false,
+//         createdAt: "Sun Aug 4 2022 20:20:34 GMT+0530 (India Standard Time)",
+//         reviewText: "excelent exprience.",
+//     },
+//     {
+//         rating: 4.5,
+//         isRestaurantReview: false,
+//         createdAt: "Fri Oct 14 2022 20:19:34 GMT+0530 (India Standard Time)",
+//         reviewText: "Very good experience.",
+//     },
+// ]);
+
+
+// const [menuImages, setMenuImages] = useState([
+//     "https://b.zmtcdn.com/data/menus/377/19498377/4ab520aa6d3cb624dd7814626d3a3514.jpg",
+//     "https://b.zmtcdn.com/data/menus/377/19498377/a817aefd6e25ac3286b5427fb2fe241a.jpg",
+//     "https://b.zmtcdn.com/data/menus/377/19498377/4557e19a745dba780e284a727a9bb7f9.jpg",
+//     "https://b.zmtcdn.com/data/menus/931/931/d40e86a957d1ed6e6fabe5a67a161904.jpg",
+//     "https://b.zmtcdn.com/data/menus/931/931/36f8a3b9e5dbf6435f903c9a8745bcc8.jpg",
+//     "https://b.zmtcdn.com/data/menus/931/931/8d6623791860b054953b6c2c14d61bcb.jpg",
+//     "https://b.zmtcdn.com/data/menus/931/931/6d462a04051c0eabb0067149aa84cc64.jpg",
+// ]);

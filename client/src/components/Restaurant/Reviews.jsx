@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 //components
 import ReviewCard from "../Reviews/ReviewCard";
 import AddReviewCard from "../Reviews/AddReviewCard";
 
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { getReview } from "../../redux/reducers/review/review.action";
+
 const Reviews = () => {
-    const [reviews, setReviews] = useState([
-        {
-            rating: 3.7,
-            isRestaurantReview: false,
-            createdAt: "Sun Aug 4 2022 20:20:34 GMT+0530 (India Standard Time)",
-            reviewText: "excelent exprience.",
-        },
-        {
-            rating: 4.5,
-            isRestaurantReview: false,
-            createdAt: "Fri Oct 14 2022 20:19:34 GMT+0530 (India Standard Time)",
-            reviewText: "Very good experience.",
-        },
-    ]);
+    const [reviews, setReviews] = useState([]);
+
+    const { id } = useParams();
+    const dispatch = useDispatch();
+
+    const updatedReviews = useSelector(
+        (globalState) => globalState.review.reviews.reviews
+    );
+
+    useEffect(() => {
+        dispatch(getReview(id)).then((data) => {
+            setReviews(data.payload.reviews);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (updatedReviews) {
+            setReviews(updatedReviews);
+        }
+    }, [updatedReviews]);
 
     return (
         <div className="w-full h-full flex-col md:flex md:flex-row relative gap-5">
