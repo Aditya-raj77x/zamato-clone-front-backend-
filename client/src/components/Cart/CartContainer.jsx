@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdArrowFropdown, IoCloseSharp } from "react-icons/io5";
 import { IoMdArrowDropup, IoMdArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -6,39 +6,11 @@ import { useNavigate } from "react-router-dom";
 // components
 import FoodItem from "./FoodItem";
 
+// redux
+import { useSelector } from "react-redux";
+
 const CartData = ({ toggle }) => {
-    const [cart, setCart] = useState([
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/caa/6e64b9f5c8b18154e91f63356d089caa.png",
-            name: "Crispy Babycorn",
-            rating: "4.5",
-            price: 240,
-            description: "",
-            quantity: 2,
-            totalPrice: 480,
-        },
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/f97/b101015981b07529e983f3a233cb2f97.png",
-            name: "Chilli Paneer Roll",
-            rating: "3.7",
-            price: 150,
-            description: "",
-            quantity: 1,
-            totalPrice: 150,
-        },
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/6aa/e170c00b9219c1c3b05b8d58394066aa.png",
-            name: "Cheese Roll",
-            rating: "4.5",
-            price: 140,
-            description: "",
-            quantity: 2,
-            totalPrice: 280,
-        },
-    ]);
+    const cart = useSelector((glocalState) => glocalState.cart.cart);
     const navigate = useNavigate();
     const continueToCheckout = () => navigate("/checkout/orders");
 
@@ -70,38 +42,7 @@ const CartData = ({ toggle }) => {
 const CartContainer = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const [cart, setCart] = useState([
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/caa/6e64b9f5c8b18154e91f63356d089caa.png",
-            name: "Crispy Babycorn",
-            rating: "4.5",
-            price: 240,
-            description: "",
-            quantity: 2,
-            totalPrice: 480,
-        },
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/f97/b101015981b07529e983f3a233cb2f97.png",
-            name: "Chilli Paneer Roll",
-            rating: "3.7",
-            price: 150,
-            description: "",
-            quantity: 1,
-            totalPrice: 150,
-        },
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/6aa/e170c00b9219c1c3b05b8d58394066aa.png",
-            name: "Cheese Roll",
-            rating: "4.5",
-            price: 140,
-            description: "",
-            quantity: 2,
-            totalPrice: 280,
-        },
-    ]);
+    const cart = useSelector((glocalState) => glocalState.cart.cart);
 
     const toggleCart = () => setIsOpen((prev) => !prev);
     const closeCart = () => setIsOpen(false);

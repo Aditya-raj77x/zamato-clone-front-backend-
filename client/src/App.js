@@ -11,6 +11,7 @@ import Restaurant from "./pages/Restaurant.page";
 // redux
 import { useDispatch } from "react-redux";
 import { getMySelf } from "./redux/reducers/user/user.action";
+import { getCart } from "./redux/reducers/cart/cart.action";
 
 // components
 import Overview from "./components/Restaurant/Overview";
@@ -25,7 +26,8 @@ function App() {
 
   useEffect(() => {
     dispatch(getMySelf());
-  }, [localStorage]);
+    dispatch(getCart());
+  }, [localStorage]);;
   return (
     <>
       <Routes>

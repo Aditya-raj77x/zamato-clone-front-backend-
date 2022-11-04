@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsShieldLockFill } from "react-icons/bs";
 
 // Layout
@@ -7,30 +7,11 @@ import CheckoutLayout from "../layouts/Checkout.layout";
 // components
 import FoodItem from "../components/Cart/FoodItem";
 import AddressList from "../components/Checkout/AddressList";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
-    const [cart, setCart] = useState([
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/7bb/4b9ce19d00df408e19c5bc9b8bdb87bb.jpg",
-            name: "Classic Cheese Pasta",
-            rating: 3.5,
-            price: 191,
-            description: "Margherita .",
-            quantity: 1,
-            totalPrice: 191,
-        },
-        {
-            image:
-                "https://b.zmtcdn.com/data/dish_photos/505/e32a5d978b698a74ea894b4d41638505.jpg",
-            name: "Veggie Treat Pizza",
-            rating: 4.5,
-            price: 262,
-            description: "apsicum, Onion, Red Paprika .",
-            quantity: 2,
-            totalPrice: 524,
-        },
-    ]);
+    const cart = useSelector((globalState) => globalState.cart.cart);
+    const user = useSelector((globalState) => globalState.user);
 
     const address = [
         {
@@ -56,8 +37,8 @@ const Checkout = () => {
                 console.log(data);
             },
             prefill: {
-                name: "Aditya raj",
-                email: "rex@email.com",
+                name: user.name,
+                email: user.email,
             },
             theme: {
                 color: "#e23744",
