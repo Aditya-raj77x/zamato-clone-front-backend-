@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdArrowDropright } from "react-icons/io"
 import { GoSettings } from "react-icons/go"
+import { useSelector } from "react-redux";
 
 
 // components!!!!!!!!
@@ -8,51 +9,15 @@ import DiningCarousel from "./DiningCarousel";
 import RestaurantCard from "../RestaurantCard";
 
 const Dining = () => {
-    const [restaurantList, setRestaurantList] = useState([
-        {
-            _id: "124ksjf435245jv34fg3",
-            isPro: true,
-            isOff: true,
-            name: "Burger King",
-            restaurantReviewValue: "3.7",
-            cuisine: [
-                "Burger King",
-                "Burger, American",
-                "Chinese",
-                "Street Food",
-                "Fast Food",
-                "Desserts",
-                "North Indian",
-            ],
-            averageCost: "450",
-        },
-        {
-            _id: "sdffdsadadsfadfadsfadsf",
-            isPro: true,
-            isOff: false,
-            name: "Vada Grill",
-            restaurantReviewValue: "4.6",
-            cuisine: ["Asian", "Chinese", "Thai", "Malaysian", "Korean"],
-            averageCost: "600",
-        },
-        {
-            _id: "124ksjf435245jfdfv34fg3",
-            isPro: true,
-            isOff: true,
-            name: "Domino's Pizza",
-            restaurantReviewValue: "3.7",
-            cuisine: [
-                "Burger King",
-                "Burger, American",
-                "Chinese",
-                "Street Food",
-                "Fast Food",
-                "Desserts",
-                "North Indian",
-            ],
-            averageCost: "450",
-        },
-    ]);
+    const [restaurantList, setRestaurantList] = useState([]);
+
+    const reduxState = useSelector(
+        (globalState) => globalState.restaurant.restaurants
+    );
+
+    useEffect(() => {
+        reduxState && setRestaurantList(reduxState);
+    }, [reduxState]);
     return (
         <div className="mb-10">
             <h1 className="text-xl mt-4 md:my-8 md:text-3xl md:font-semibold">

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import FoodTab from "../components/FoodTab";
+import Footer from "../components/Footer";
 
 const HomepageLayout =
     (Component) =>
@@ -12,6 +13,7 @@ const HomepageLayout =
                     <div className="container mx-auto px-4 lg:px-20">
                         <Component {...props} />
                     </div>
+                    <Footer />
                 </>
             );
         };
