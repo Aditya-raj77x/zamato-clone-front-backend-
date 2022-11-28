@@ -5,7 +5,7 @@ This is a Full Stack Project
 
 I have created It using MERN stack (Ract,Node js ,MongoBS,Express)
 
-Zomato is a online food ordering application, I have made a clone  of it using React Js, Zomato Frontend clone using React Js. for Front end And Node js for back End and MongoDB to store The Data.
+Zomato is a online food ordering application, I have made a clone  of it using React Js, Zomato Frontend clone using React Js. for FrontEnd And Node js for back End and MongoDB to store The Data.
 
 ## Project Video Link https://drive.google.com/file/d/15UKLVK58dTMy4ptV3yfdA9NzlmFMPBcS/view
 
